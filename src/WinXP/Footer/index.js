@@ -17,6 +17,9 @@ const getTime = () => {
     hour -= 12;
     hourPostFix = 'PM';
   }
+  if (hour === 0) {
+    hour = 12;
+  }
   if (min < 10) {
     min = '0' + min;
   }
@@ -144,6 +147,7 @@ const Container = styled.footer`
   .footer__items.left {
     height: 100%;
     flex: 1;
+    overflow: hidden;
   }
   .footer__items.right {
     background-color: #0b77e9;
@@ -166,7 +170,7 @@ const Container = styled.footer`
     border-left: 1px solid #1042af;
     box-shadow: inset 1px 0 1px #18bbff;
     padding: 0 10px;
-    margin-left: 1px;
+    margin-left: 10px;
   }
   .footer__items {
     display: flex;
@@ -209,7 +213,6 @@ const Container = styled.footer`
   .footer__icon {
     height: 15px;
     width: 15px;
-    margin-right: 4px;
   }
   .footer__text {
     position: absolute;
