@@ -99,13 +99,7 @@ export const defaultIconState = [
     component: Notepad,
     isFocus: false,
   },
-  {
-    id: 4,
-    icon: run,
-    title: 'Run',
-    component: RunBox,
-    isFocus: true,
-  }
+
 ];
 
 export const appSettings = {
