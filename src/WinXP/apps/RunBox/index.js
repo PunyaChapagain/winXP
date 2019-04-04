@@ -15,7 +15,7 @@ const reducer = (state, action = { type: '' }) => {
         ...state,
         apps: [...state.apps, { ...action.payload, id: state.nextAppID }],
         nextAppID: state.nextAppID + 1,
-        //focusing: FOCUSING.WINDOW,
+
       };
     case 'new':
       return appSettings.Notepad
