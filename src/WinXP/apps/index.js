@@ -292,6 +292,22 @@ export const appSettings = {
     maximized: window.innerWidth < 800,
     multiInstance: true,
   },
+  RunBox: {
+    headerIcon: run,
+    title: 'Run',
+    component: RunBox,
+    defaultSize: {
+      width: 380,
+      height: 160,
+    },
+    defaultOffset: {
+      x: window.innerWidth / 2 - 300,
+      y: window.innerHeight / 2,
+    },
+    resizable: false,
+    minimized: false,
+    maximized: false,
+  }
 };
 
 export { InternetExplorer, Minesweeper, ErrorBox, MyComputer, Notepad, Winamp };

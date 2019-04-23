@@ -2,6 +2,7 @@ import React, { useRef, memo } from 'react';
 import useWindowSize from 'react-use/lib/useWindowSize';
 import { useElementResize } from 'src/hooks';
 import styled from 'styled-components';
+import question from 'src/assets/windowsIcons/747(16x16).png'
 
 import HeaderButtons from './HeaderButtons';
 
@@ -32,7 +33,7 @@ function Windows({
   );
 }
 
-const Window = memo(function({
+const Window = memo(function ({
   injectProps,
   id,
   onMouseDown,
@@ -103,21 +104,21 @@ const Window = memo(function({
     >
       <div className="header__bg" />
       <header className="app__header" ref={dragRef}>
-        <img
-          src={header.icon}
-          alt={header.title}
-          className="app__header__icon"
-        />
-        <div className="app__header__title">{header.title}</div>
-        <HeaderButtons
-          buttons={header.buttons}
-          onMaximize={_onMouseUpMaximize}
-          onMinimize={_onMouseUpMinimize}
-          onClose={_onMouseUpClose}
-          maximized={maximized}
-          resizable={resizable}
-          isFocus={isFocus}
-        />
+        <img src={headerIcon} alt={title} className="app__header__icon" />
+        <div className="app__header__title">{title}</div>
+        <div className="app__header__buttons">
+          {(title !== "Run") && <button
+            className="app__header__minimize"
+            onMouseUp={_onMouseUpMinimize}
+          />}
+          {(title === "Run") ? <button className={`app__header__help`} ><img src={question} alt="help" className="run__img" /></button> : <button
+            className={`app__header__maximize ${maximized ? 'maximized' : ''} ${
+              resizable ? '' : 'disable'
+              }`}
+            onMouseUp={_onMouseUpMaximize}
+          />}
+          <button className="app__header__close" onMouseUp={_onMouseUpClose} />
+        </div>
       </header>
       <div className="app__content">
         {component({
@@ -142,9 +143,9 @@ const StyledWindow = styled(Window)`
   border-top-right-radius: 8px;
   .header__bg {
     background: ${({ isFocus }) =>
-      isFocus
-        ? 'linear-gradient(to bottom,#0058ee 0%,#3593ff 4%,#288eff 6%,#127dff 8%,#036ffc 10%,#0262ee 14%,#0057e5 20%,#0054e3 24%,#0055eb 56%,#005bf5 66%,#026afe 76%,#0062ef 86%,#0052d6 92%,#0040ab 94%,#003092 100%)'
-        : 'linear-gradient(to bottom, #7697e7 0%,#7e9ee3 3%,#94afe8 6%,#97b4e9 8%,#82a5e4 14%,#7c9fe2 17%,#7996de 25%,#7b99e1 56%,#82a9e9 81%,#80a5e7 89%,#7b96e1 94%,#7a93df 97%,#abbae3 100%)'};
+    isFocus
+      ? 'linear-gradient(to bottom,#0058ee 0%,#3593ff 4%,#288eff 6%,#127dff 8%,#036ffc 10%,#0262ee 14%,#0057e5 20%,#0054e3 24%,#0055eb 56%,#005bf5 66%,#026afe 76%,#0062ef 86%,#0052d6 92%,#0040ab 94%,#003092 100%)'
+      : 'linear-gradient(to bottom, #7697e7 0%,#7e9ee3 3%,#94afe8 6%,#97b4e9 8%,#82a5e4 14%,#7c9fe2 17%,#7996de 25%,#7b99e1 56%,#82a9e9 81%,#80a5e7 89%,#7b96e1 94%,#7a93df 97%,#abbae3 100%)'};
     position: absolute;
     left: 0;
     top: 0;
